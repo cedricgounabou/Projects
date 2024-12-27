@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" async></script>
+    <link rel="icon" type="image/png" href="images/secure.jpg">
+</head>
+
+<body>
+    <section id="section1">
+        <p class="message">Generation success</p>
+        <p class="errorMessage">Veuillez cocher au moins une case</p>
+
+        <h1>Password G&eacute;n&eacute;rator</h1>
+
+        <h3>Cr&eacute;er un nouveau mot de passe securis&eacute;</h3>
+        <div class="reglages">
+
+
+            <label for="case1"><input type="checkbox" name="majuscule" id="case1">Avec des lettres majuscules</label>
+            <label for="case2"><input type="checkbox" name="minuscule" id="case2">Avec des lettres minuscules</label>
+            <label for="case3"><input type="checkbox" name="chiffre" id="case3">Avec des chiffres [0-9]</label>
+            <label for="case4"><input type="checkbox" name="symbole" id="case4">Avec des caracteres sp&eacute;ciaux</label>
+
+        
+            <label for="nbchar" class=nbCaracteres>
+                <select id="nbchar">
+                    <option value="8">8 Caract&egrave;res</option>
+                    <option value="12">12 Caract&egrave;res</option>
+                    <option value="16">16 Caract&egrave;res</option>
+                    <option value="20">20 Caract&egrave;res</option>
+                    <option value="24">24 Caract&egrave;res</option>
+                </select> Le nombre de caract&egrave;res
+            </label>
+
+            <div class="passwordText">
+                <div class="textGener">
+                    <input type="text" name="password" id="password">
+                    <img src="images/copierlien.png" alt="Copier le mot de passe" id="copie" title="Copier le mot de passe">
+                    <div class="copie-button">
+                        <img src="images/password-copied.png" alt="Mot de passe copie avec succes" id="validation-copie">
+                        <p class="message-confirm">Copied</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <input type="submit" id="submit" value="G&eacute;n&eacute;rer un mot de passe">
+        </div>
+
+
+    </section>
+
+    <section id="section2">
+        
+    </section>
+
+
+</body>
+</html>

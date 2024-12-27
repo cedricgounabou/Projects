@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.copie-button {
+    display: none;
+    /*display: flex;
+    margin: 0;
+    flex-wrap: nowrap;
+    margin-right: 3px;*/
+}
+
+img#validation-copie {
+    height: 3vh;
+    width: 22%;
+    display: block;
+    margin-right: 1px;
+}
+
+.textGener {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+img#copie {
+    height: 5vh;
+    width: 5%;
+}
+
+img#copie:hover {
+    cursor: pointer;
+}
+
+.passwordText {
+    width: 75%;
+    border: 1px solid black;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    box-shadow: 1px 3px 9px 3px darkgrey;
+    border-radius: 9px;
+    margin: 16px 0 13px 0;
+}
+
+label {
+    width: 41%;
+    margin: 0 auto;
+    display: inline-flex;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+label.nbCaracteres {
+    width: 63%;
+    display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /*background-image: url(images/img1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
+
+#section1 {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+}
+
+/*#section2 {
+    width: 40%;
+}*/
+
+
+/******************Message qui s'affiche en haut de page au clic sur le bouton creer un Mot de passe******************/
+.message {
+    display: none;
+}
+.messageOn {
+    display: block;
+    font-size: 9px;
+    padding: 5px 0 5px 0;
+    background: linear-gradient(90deg, #208b19 0%, #3ad578 100%);
+    width: 14%;
+    color: #fff;
+    font-weight: 900;
+    border-radius: 8px;
+    position: absolute;
+    left: 44%;
+    top: 0px;
+    text-align: center;
+    animation-duration: 0.8s;
+    animation-name: slideMessage;
+
+}
+
+.errorMessage {
+    display: none;
+}
+
+
+
+.errorMessageEnable {
+    display: block;
+    width: 27%;
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px auto;
+    background: #d76704;
+    padding: 2px;
+    border-radius: 9px;
+    color: #fff;
+    left: calc((100% - 27%) / 2);
+    animation-duration: 0.8s;
+    animation-name: slideError;
+}
+
+h1 {
+    margin: 45px 0 20px 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+h3 {
+    margin: 0px 0 4px 0;
+    font-size: 22px;
+    text-align: center;
+}
+
+select#nbchar {
+    margin: 0 3px 0 0;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+select#nbchar:hover {
+    cursor: pointer;
+}
+
+.reglages input#password {
+    height: 5vh;
+    width: 80%;
+    font-size: 19px;
+    text-align: center;
+    margin-right: 15px;
+    border: none;
+}
+
+.reglages {
+    width: 100%;
+    display: flex;
+    margin: 20px auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.reglages input#submit {
+    width: 75%;
+    height: 45px;
+    margin: 10px auto;
+    font-size: 19px;
+    font-family: auto;
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+}
+
+input[type="checkbox"] {
+    margin-right: 3px;
+    height: 20px;
+    width: 20px;
+    align-content: center;
+}
+
+input[type="checkbox"]:checked {
+    margin-left: 10px;
+
+}
+
+.reglages input#submit:hover {
+    cursor: pointer;  
+    transform: scale(1.2);
+    transition-duration: 0.5s;
+    /*animation-duration: infinite;*/
+    animation: 10s soumettre infinite;
+}
+
+
+label:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+/********************************Message de confirmation au clic sur le l'icone copier*************************/
+.animeMessageCopie {
+    display: flex;
+    margin: 0;
+    flex-wrap: nowrap;
+    margin-right: 3px;
+    animation-duration: 2s;
+    animation-name: slideMessageCopier;
+
+}
+/**********************************************Animation************************************************/
+@keyframes soumettre {
+    0%{
+        background: #3a47d5;
+    }
+    50%{
+        background: #ca0314;
+    }
+    100%{
+        background: #3a47d5;
+    }
+
+}
+
+@keyframes slideMessage {
+    0% {
+        top: -30px;
+        font-size: 8px;  
+        padding: 0;
+    }
+    25%{
+        padding: 6px 2px 6px 2px;
+    }
+    50% {
+        top:20px;
+    }
+    75%{
+        top: 20px;
+    }
+    100%{
+        top: -35px;
+        font-size: 10px;
+        padding: 5px 0 5px 0;
+    }
+}
+
+@keyframes slideError {
+    0% {
+        top: -30px;
+        font-size: 8px;  
+    }
+    25%{
+        padding: 6px 2px 6px 2px;
+    }
+    50% {
+        top:10px;
+    }
+    75%{
+        top: 10px;
+    }
+    100%{
+        top: -35px;
+        font-size: 16px;
+        padding: 5px 0 5px 0;
+    }
+
+}
+
+/*@keyframes slideMessageCopier {
+    0% {
+        margin-right: 0px;
+    }
+    50% {
+        margin-right: 1px;
+    }
+    100% {
+        margin-right: 0px;
+    }
+}*/
+

@@ -1,0 +1,161 @@
+//Projet
+
+const prompt = require("prompt-sync")()
+
+const annuaire = [];
+
+// Message de démarrage de l'appli
+console.log("Liste de contacts initialisée avec succès : ", annuaire);
+console.log("\n-----------------------------------------------------------");
+
+function ajouterContact(){
+    const nom = prompt("Entrez votre nom : ");
+    const prenom = prompt("Entrez votre prenom : ");
+    const telephone = parseInt(prompt("Entrez votre telephone : "));
+    const email = prompt("Entrez votre adresse email : ");
+
+    if (!nom || !prenom || !telephone || !email) { //Cette condition verifie si le champ vide ou a la valeur attribue a fausse 
+        console.error("Erreur : Tous les champs sont obligatoires doivent etre renseingne correctement !");
+        console.log("Aucune donnee n'a ete ajoute a l'annuaire, donnees invalides");
+        return false;
+    }
+
+    // Vérifier si la valeur attribue a la variable telephone n'est pas numerique et affiche une erreur dans ce cas
+    if (isNaN(telephone) || telephone.length < 10) {
+        console.error("Erreur : Vous avez entre un numero de telephone invalide !");
+        return false;
+    }
+
+    // Vérifier si le format de l'email est correct selon la syntaxe : cedren@gmail.com
+    const emailTeste = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailTeste.test(email)) {
+        console.error("Erreur : L'adresse e-mail n'est pas valide !");
+        return false;
+    }
+
+    // Ajouter les informations du contact au tableau
+    annuaire.push({nom: nom, prenom : prenom, telephone : telephone, email : email});
+    console.log("Ajout de contact effectue vec susces !!!");
+    console.log(`Le contact : nom: ${nom}, prenom: ${prenom}, telephone: ${telephone}, email: ${email} a bien été ajouté dans l'annuaire`);
+    console.log("------------------------------------------------------------------");
+    return true;
+}
+
+//La fonction afficherAnnuaire() qui nous permettra d'afficher tous contacts stockes dans notre tableau d'objets
+function afficherAnnuaire(){
+    console.log("------------------------------------------------------------------");
+    if( annuaire.length === 0){
+        console.log("Vous n'avez aucun contact dans l'annuaire");
+    } else {
+        console.log("L'annuaire ou la liste des contacts :");
+        for(let i=0; i < annuaire.length; i++){
+            console.log(`${i + 1} - nom : ${annuaire[i].nom} prenom : ${annuaire[i].prenom} telephone : ${annuaire[i].telephone} email: ${annuaire[i].email}`);
+        }
+    }
+}
+
+//La fonction supprimerContact(numero) qui nous permettra de supprimer un contact se trouvant dans notre annuaire ou tableau
+//Cette fonction prend en parametre la variable numero qui est la position du contact que nous voulons de l'annuaire ou de notre tableau
+function supprimerContact(numero){
+
+    if(numero < 1 || numero > annuaire.length){
+        console.log("Le numero d'ordre que vous avez entre est invalide");
+        return
+    } else {
+        const suppCont = annuaire.splice(numero - 1, 1)[0];//stocke le contact supprime dans une variable que nous avons appele suppCont
+        console.log(`Le contact ${suppCont.telephone} du nom : ${suppCont.nom} et prenom : ${suppCont.prenom} de a bien ete supprime avec succes !!! `);
+    }
+}
+
+let positionContact = 0;//la variable positionContact nous servira plus tard 
+//La fonction rechercheContact(telephone, nom) permet deretrouver un contact en fonction du telephone ou du nom connu
+//Nous emprofiterons pour reccuperer la position du contact recherche dans notre car elle nous servira pour la mise a jour d'un contact car
+//il nous sera important de connaitre la position du contact auquel nous voulons faire une mise a jour
+function rechercheContact(nom, telephone) {
+    let contactTrouve = false; // Indicateur pour vérifier si un contact est trouvé
+
+    for (let i = 0; i < annuaire.length; i++) {
+        // Comparaison le nom et le téléphone donnees par l'utilisateur aux donnees de notre tableau tout en le parcourant  
+        if (nom === annuaire[i].nom || telephone === annuaire[i].telephone) {
+            positionContact = i;
+            contactTrouve = true;
+            console.log(`Le téléphone ou le nom est valide et le contact se trouve a la position numero ${i + 1} de l'annuaire.`);
+            console.log(`Voici le contact trouvé : \n nom : ${annuaire[i].nom}, prenom : ${annuaire[i].prenom}, telephone : ${annuaire[i].telephone}, email : ${annuaire[i].email}`);
+        }
+    }
+
+    // Si aucun contact n'a été trouvé
+    if (!contactTrouve) {
+        console.log("Aucun contact correspondant trouvé dans l'annuaire.");
+    }
+}
+
+function miseAjour(){
+    console.log("Veuillez entrer le nom ou le numero de telephone du contact que vous comptez modifier");
+    const telephone = parseInt(prompt("Entrez le téléphone recherché : ")); // Conversion en entier
+    const nom = prompt("Entrez le nom recherché : ");
+    rechercheContact(telephone, nom); //Nous faisons appel a la fonction de recherche pour retrouver le contact
+
+    console.log("Veuillez saisir suivre et saisir entrer les nouvelles informations que vous voulez apporter : ");
+    annuaire[positionContact].nom = prompt("Veuillez entrer le nouveau nom : ");
+    annuaire[positionContact].prenom = prompt("Veuillez entrer le nouveau prenom : ");
+    annuaire[positionContact].telephone = prompt("Veuillez entrer le nouveau numero de telephone : ");
+    annuaire[positionContact].email = prompt("Veuillez entrer la nouvelle adresse email : ");
+    console.log("Mise a jour effectue avec succes informations sauvergardes");
+    return
+
+
+}
+
+function menuPrincipal() {
+    let UserChoix;
+    do {
+        console.log("\n-------------------------------- Menu Principal de l'application de gestion de contact --------------------------------\n");
+        console.log("1. Ajouter un nouveau contact dans l'annuaire");
+        console.log("2. Afficher les contacts de l'annuaire");
+        console.log("3. Supprimer un contact de l'annuaire");
+        console.log("4. Rechercher un contact dans l'annuaire");
+        console.log("5. Mettre a jour un contact");
+        console.log("6. Quitter l'application");
+
+        UserChoix = parseInt(prompt("Quelle option choisissez- vous ? (1-6) : "))
+
+        switch (UserChoix) {
+            case 1:
+                ajouterContact();
+                break;
+            case 2:
+                afficherAnnuaire();
+                break;
+            case 3:
+                const numero = parseInt(prompt("Veuillez supprimer"));
+                supprimerContact(numero);
+                break;
+            case 4:
+                console.log("Tapez 1 si vous voulez faire la recherche a partir du nom (1) et 2 pour la faire a partir d'un numero de telephone connu (2) ");
+                const testRech = parseInt(prompt());
+                if(testRech === 1) {
+                    const nom = prompt("Entrez le nom du contact recherché : ");
+                } else if(testRech === 2){
+                    const telephone = parseInt(prompt("Entrez le numero de téléphone recherché : ")); // Conversion de la valeur entree en entier
+                } else {
+                    console.error("numero invalide, veuillez taper entre 1 et 2 : ");
+                }
+                rechercheContact(telephone, nom);
+                break;
+            case 5:
+                miseAjour();
+                break;
+                case 6:
+                console.log("Merci d'avoir essaye notre appli, Bonne continuation !!!");
+                break;
+        
+            default:
+                console.log("Numero de choix invalide, veuillez siair un nombre entre 1 et 6");
+                break;
+        }
+        
+    } while (UserChoix !== 6);
+}
+menuPrincipal();
+
